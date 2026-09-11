@@ -56,7 +56,7 @@ var Ports = map[string]string{
 	Greatws:            "24001:24050",
 	GreatwsEvent:       "25001:25050",
 	UwsStdio:           "26001:26050",
-	UwsEvents:          "27001:27050",
+	UwsEvents:          "28001:28050",
 }
 
 var FrameworkList = []string{
