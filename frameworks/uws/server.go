@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"os"
 	"os/signal"
+	"runtime"
 
 	"go-websocket-benchmark/config"
 	"go-websocket-benchmark/frameworks"
@@ -68,9 +69,7 @@ func main() {
 		server := uws.NewServer(echoHandler{})
 
 		server.Events = &uio.Events{
-			// One worker per listener keeps the aggregate worker count close to
-			// the former single Events instance without multiplying NumCPU by ports.
-			Pollers:       1,
+			Pollers:       runtime.NumCPU(),
 			MaxBufferSize: *readBufferSize,
 		}
 		servers[index] = server

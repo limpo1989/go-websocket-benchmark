@@ -136,7 +136,7 @@ func InitAndGetFrameworkPid(framework, ip string, args *InitArgs) (int, string, 
 		return -1, "", err
 	}
 	pidPort := ports[len(ports)-1]
-	if framework == Gws {
+	if framework == Gws || framework == UwsStdio || framework == UwsEvents {
 		pidPort++
 	}
 	serverAddr := fmt.Sprintf("http://%v:%v/init", ip, pidPort)
@@ -162,7 +162,7 @@ func GetFrameworkPsInfo(framework, ip string) (*perf.PSCounter, error) {
 		return nil, err
 	}
 	pidPort := ports[len(ports)-1]
-	if framework == Gws {
+	if framework == Gws || framework == UwsStdio || framework == UwsEvents {
 		pidPort++
 	}
 	serverAddr := fmt.Sprintf("http://%v:%v/ps", ip, pidPort)
